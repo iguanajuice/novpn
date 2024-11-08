@@ -1,6 +1,6 @@
 # novpn
 
-Easy split-tunneling setup using network namespaces
+Easy split tunneling setup using network namespaces
 
 
 ## Dependencies
@@ -12,12 +12,12 @@ Easy split-tunneling setup using network namespaces
 
 ## Installation
 
-Run `./install.sh` for automatic setup. This will install the following files:
+Run `./install.sh` for an automated setup
 
 
 ## Usage
 
-### Running application or command
+### Running an application or command
 
 `novpn [command [args]]`
 
@@ -33,9 +33,9 @@ inside the namespace. In the following example, we'll use `wg-quick`:
 sudo ip netns e novpn wg-quick up wg1.conf
 ```
 
-Notice how we use `sudo ip` instead of `novpn`. This is because VPN connections
-requires root, and `novpn` drops privileges upon entering the namespace
+Notice that we use `sudo ip` instead of `novpn`; this is because VPN connections
+requires root and `novpn` drops privileges upon entering the namespace
 
 ### As a blacklist
 
-Simply connect your VPN as usual, everything running with `novpn` will not be tunneled
+Simply connect your VPN as usual, everything running through `novpn` will not be tunneled

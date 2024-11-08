@@ -1,0 +1,9 @@
+[Unit]
+Description=Create novpn network namespace
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/novpn-ns-setup.sh
+
+[Install]
+WantedBy=multi-user.target

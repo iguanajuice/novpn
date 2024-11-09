@@ -12,7 +12,7 @@ Easy split tunneling setup using network namespaces
 
 ## Installation
 
-Run `./install.sh` for an automated setup
+Clone the repo and run `./install.sh` for an automated setup
 
 
 ## Usage

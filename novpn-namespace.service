@@ -2,8 +2,9 @@
 Description=Create novpn network namespace
 
 [Service]
-Type=oneshot
+Type=forking
 ExecStart=/usr/libexec/novpn-ns-setup.sh
+KillMode=process
 
 [Install]
 WantedBy=multi-user.target

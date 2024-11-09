@@ -12,7 +12,7 @@ chmod u+s /usr/bin/novpn'
 if [ `ps -p1 -ocomm=` = "systemd" ]
 then
 	sh -xec '
-	install -D novpn-namespace.service /etc/system/systemd
+	install -D novpn-namespace.service /etc/systemd/system
 	systemctl enable --now novpn-namespace'
 else
 	echo "

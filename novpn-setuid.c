@@ -10,8 +10,9 @@ int main(int argc, char* argv[]) {
 		strcat(command, " -c ' ");
 
 		for (int i = 1; i < argc; i++) {
+			strcat(command, "\"");
 			strcat(command, argv[i]);
-			strcat(command, " ");
+			strcat(command, "\" ");
 		}
 
 		strcat(command, "'");

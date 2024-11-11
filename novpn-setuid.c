@@ -25,7 +25,7 @@ int main (int argc, char* argv[]) {
 	getgid() == 0 && die; // must not be real root group
 	geteuid() == 0 || die; // must be effective root
 
-	int fd = open (PATH_TO_NAMESPACE, O_RDONLY);
+	int fd = open(PATH_TO_NAMESPACE, O_RDONLY);
 	fd == -1 && die;
 	setns(fd, CLONE_NEWNET) == 0 || die;
 	close(fd) == 0 || die;
@@ -35,11 +35,6 @@ int main (int argc, char* argv[]) {
 
 	setuid(getuid()) == 0 || die; // drop effecitve root
 	setgid(getgid()) == 0 || die; // drop effective root group
-
-	getuid() == 0 && die; // must not be real root
-	getgid() == 0 && die; // must not be real root group
-	geteuid() == 0 && die; // must not be effective root
-	getegid() == 0 && die; // must not be effecitve root group
 
 	if (argc > 1) {
 		execvp(argv[1], argv + 1);

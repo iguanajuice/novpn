@@ -1,5 +1,7 @@
 [Unit]
 Description=Create novpn network namespace
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=forking

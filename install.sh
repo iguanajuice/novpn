@@ -5,6 +5,8 @@ then
 fi
 
 sh -xec '
+mkdir -p /etc/netns/novpn
+cp /etc/resolv.conf /etc/netns/novpn
 install -D novpn-ns-setup.sh /usr/libexec
 cc novpn-setuid.c -o /usr/bin/novpn
 chmod u+s /usr/bin/novpn'

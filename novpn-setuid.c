@@ -31,7 +31,8 @@ int main (int argc, char* argv[]) {
 	close(fd) == 0 || die;
 
 	// bind mount resolv.conf
-	mount("/etc/netns/novpn/resolv.conf", "/etc/resolv.conf", "none", MS_BIND, NULL) == 0 || die;
+	unshare(CLONE_NEWNS) == 0 || die;
+	mount("/etc/netns/novpn/resolv.conf", "/etc/resolv.conf", "none", MS_BIND | MS_SLAVE, NULL);
 
 	setuid(getuid()) == 0 || die; // drop effecitve root
 	setgid(getgid()) == 0 || die; // drop effective root group

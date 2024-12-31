@@ -1,0 +1,17 @@
+#!/usr/sbin/nft -f
+
+define wan = eth0
+
+table inet novpn {
+	chain forward {
+		type filter hook forward priority -100;
+		oif $wan iifname veth-nopvn accept
+		iif $wan oifname veth-nopvn accept
+	}
+
+	chain postrouting {
+		type nat hook postrouting priority -100;
+		ip saddr 10.0.8.0/24 oif $wan masquerade
+		ip6 saddr fc:0:0:8::/64 oif $wan masquerade
+	}
+}

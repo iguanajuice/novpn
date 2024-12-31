@@ -7,7 +7,8 @@ fi
 sh -xec '
 mkdir -p /etc/netns/novpn
 cp /etc/resolv.conf /etc/netns/novpn
-install -D novpn-ns-setup.sh /usr/libexec
+install -Dm755 novpn-ns-setup.sh /usr/libexec
+install -Dm644 novpn.nft /usr/share/nftables
 cc novpn-setuid.c -o /usr/bin/novpn
 chmod u+s /usr/bin/novpn'
 

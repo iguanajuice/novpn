@@ -15,3 +15,5 @@ table inet novpn {
 		ip6 saddr fc:0:0:8::/64 oif $wan masquerade
 	}
 }
+
+flush table inet novpn

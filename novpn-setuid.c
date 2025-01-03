@@ -20,7 +20,8 @@ int die_f(int line_number) {
 
 #define die (die_f(__LINE__))
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
 	getuid() == 0 && die; // must not be real root
 	getgid() == 0 && die; // must not be real root group
 	geteuid() == 0 || die; // must be effective root

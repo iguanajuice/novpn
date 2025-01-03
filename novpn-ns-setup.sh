@@ -14,6 +14,7 @@ ip --netns novpn addr add 10.0.8.2/24 dev veth
 ip --netns novpn addr add fc:0:0:8::2/64 dev veth
 
 ip link set veth-novpn up
+ip --netns novpn link set lo up
 ip --netns novpn link set veth up
 
 sysctl -w net.ipv4.conf.all.forwarding=1

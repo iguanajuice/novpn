@@ -38,3 +38,5 @@ requires root and `novpn` drops privileges upon entering the namespace
 ### As a blacklist
 
 Simply connect your VPN as usual, everything running through `novpn` will not be tunneled
+
+_Note: May not work with some VPN clients_

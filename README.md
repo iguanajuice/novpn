@@ -34,9 +34,3 @@ sudo ip netns e novpn wg-quick up wg1
 
 Notice that we use `sudo ip` instead of `novpn`; this is because VPN connections
 requires root and `novpn` drops privileges upon entering the namespace
-
-### As a blacklist
-
-Simply connect your VPN as usual, everything running through `novpn` will not be tunneled
-
-_Note: May not work with some VPN clients_

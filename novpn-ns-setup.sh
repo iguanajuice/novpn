@@ -5,6 +5,9 @@ PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 ip netns del novpn
 ip netns add novpn
 
+mkdir -p /etc/netns/novpn
+touch /etc/netns/novpn/resolv.conf
+
 ip link add veth-novpn type veth peer name veth
 ip link set veth netns novpn
 

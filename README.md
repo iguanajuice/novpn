@@ -6,6 +6,7 @@ Easy split tunneling setup using network namespaces
 ## Dependencies
 
 * `iproute2`
+* `dhcpcd`
 * a C compiler
 
 

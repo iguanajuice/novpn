@@ -6,7 +6,6 @@ fi
 
 sh -xec '
 install -Dm755 novpn-ns-setup.sh /usr/libexec
-install -Dm644 novpn.nft /usr/share/nftables
 cc novpn-setuid.c -o /usr/bin/novpn
 chmod u+s /usr/bin/novpn'
 

@@ -15,7 +15,6 @@ ip link set veth netns novpn
 
 ip addr add 10.0.1.1/24 dev novpn
 ip --netns novpn addr add 10.0.1.2/24 dev veth
-ip --netns novpn route add default via 10.0.1.1
 
 ip link set novpn up
 ip --netns novpn link set lo up

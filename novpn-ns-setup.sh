@@ -2,12 +2,12 @@
 
 PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 
+mkdir -p /etc/netns/novpn
+touch /etc/netns/novpn/resolv.conf
+
 ip netns del novpn
 ip netns add novpn
 ip link del novpn
-
-mkdir -p /etc/netns/novpn
-touch /etc/netns/novpn/resolv.conf
 
 ip link add mvlan link $PHY_IFNAME netns novpn type macvlan
 ip link add novpn type veth peer name veth

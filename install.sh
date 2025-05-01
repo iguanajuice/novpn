@@ -5,7 +5,9 @@ then
 fi
 
 sh -xec '
-install -Dm755 novpn-ns-setup.sh /usr/libexec
+mkdir -p /usr/libexec/novpn
+install -Dm755 ns-setup.sh /usr/libexec/novpn
+install -Dm755 resolvconf /usr/libexec/novpn
 cc novpn-setuid.c -o /usr/bin/novpn
 chmod u+s /usr/bin/novpn'
 

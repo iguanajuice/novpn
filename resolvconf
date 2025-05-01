@@ -1,0 +1,27 @@
+#!/bin/sh
+
+flag_a=0
+flag_d=0
+
+while getopts "a:d:f" flag
+do
+    case $flag in
+        a)
+            flag_a=1
+            ;;
+        d)
+            flag_d=1
+            ;;
+    esac
+done
+
+if [ $flag_a -eq 1 ]
+then
+    cp /etc/resolv.conf /etc/resolv.conf.bak
+    cat >> /etc/resolv.conf
+elif [ $flag_d -eq 1 ]
+then
+    cp /etc/resolv.conf.bak /etc/resolv.conf
+else
+    exit 1
+fi

@@ -5,9 +5,11 @@ PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 mkdir -p /etc/netns/novpn
 touch /etc/netns/novpn/resolv.conf
 
+ip link del novpn
 ip netns del novpn
 ip netns add novpn
-ip link del novpn
+
+ip netns e novpn mount --bind /usr/libexec/novpn/resolvconf /usr/bin/resolvconf
 
 ip link add mvlan link $PHY_IFNAME netns novpn type macvlan
 ip link add novpn type veth peer name veth

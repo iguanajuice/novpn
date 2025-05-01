@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=forking
-ExecStart=/usr/libexec/novpn-ns-setup.sh
+ExecStart=/usr/libexec/novpn/ns-setup.sh
 KillMode=process
 
 [Install]

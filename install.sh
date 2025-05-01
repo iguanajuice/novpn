@@ -9,7 +9,7 @@ mkdir -p /usr/libexec/novpn
 install -Dm755 ns-setup.sh /usr/libexec/novpn
 install -Dm755 resolvconf /usr/libexec/novpn
 cc novpn-setuid.c -o /usr/bin/novpn
-chmod u+s /usr/bin/novpn'
+setcap CAP_SYS_ADMIN=ep /usr/bin/novpn'
 
 if [ `ps -p1 -ocomm=` = "systemd" ]
 then

@@ -22,17 +22,15 @@ int die_f(int line_number) {
 
 int main(int argc, char* argv[])
 {
-	getuid() == 0 && die; // must not be real root
-	getgid() == 0 && die; // must not be real root group
-	geteuid() == 0 || die; // must be effective root
-
 	int fd = open(PATH_TO_NAMESPACE, O_RDONLY);
 	fd == -1 && die;
 	setns(fd, CLONE_NEWNET) == 0 || die;
 	close(fd) == 0 || die;
 
-	setuid(getuid()) == 0 || die; // drop effecitve root
-	setgid(getgid()) == 0 || die; // drop effective root group
+	unshare(CLONE_NEWNS) == 0 || die;
+	mount("none", "/", NULL, MS_REC | MS_PRIVATE, NULL) == 0 || die;
+	mount("/etc/netns/novpn/resolv.conf", "/etc/resolv.conf", "none", MS_BIND, NULL);
+	mount("/usr/libexec/novpn/resolvconf", "/bin/resolvconf", "none", MS_BIND, NULL);
 
 	if (argc > 1) {
 		execvp(argv[1], argv + 1);

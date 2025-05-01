@@ -30,8 +30,9 @@ Running `novpn` with no arguments will spawn a new shell
 To only allow certain programs to be tunneled, you'll need to run your VPN client
 inside the namespace. In the following example, we'll use `wg-quick`:
 ```
-sudo ip netns e novpn wg-quick up wg1
+novpn sudo wg-quick up ~/wg1.conf
 ```
 
-Notice that we use `sudo ip` instead of `novpn`; this is because VPN connections
-requires root and `novpn` drops privileges upon entering the namespace
+### As a blacklist
+
+Simply run your VPN normally; any traffic inside the namespace should not be tunneled.

@@ -1,6 +1,6 @@
 # novpn
 
-Easy split tunneling setup using network namespaces
+Easy split tunneling setup using network namespaces!
 
 
 ## Dependencies
@@ -12,7 +12,7 @@ Easy split tunneling setup using network namespaces
 
 ## Installation
 
-Clone the repo and run `./install.sh` for an automated setup
+Clone the repo and run `./install.sh` for an automated setup.
 
 
 ## Usage
@@ -23,7 +23,7 @@ Clone the repo and run `./install.sh` for an automated setup
 
 Example: `novpn flatpak run org.chromium.Chromium`
 
-Running `novpn` with no arguments will spawn a new shell
+Running `novpn` with no arguments will spawn a new shell.
 
 ### As a whitelist
 

@@ -9,8 +9,6 @@ ip link del novpn
 ip netns del novpn
 ip netns add novpn
 
-ip netns e novpn mount --bind /usr/libexec/novpn/resolvconf /usr/bin/resolvconf
-
 ip link add mvlan link $PHY_IFNAME netns novpn type macvlan
 ip link add novpn type veth peer name veth
 ip link set veth netns novpn

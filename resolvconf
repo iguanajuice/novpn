@@ -17,11 +17,11 @@ done
 
 if [ $flag_a -eq 1 ]
 then
-    echo nameserver 127.0.0.53 > /etc/resolv.conf
+    cp /etc/resolv.conf /etc/netns/novpn/resolv.conf.bak
     cat >> /etc/resolv.conf
 elif [ $flag_d -eq 1 ]
 then
-    echo nameserver 127.0.0.53 > /etc/resolv.conf
+    mv /etc/netns/novpn/resolv.conf.bak /etc/resolv.conf
 else
     exit 1
 fi

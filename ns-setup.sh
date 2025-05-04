@@ -3,7 +3,7 @@
 PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 
 mkdir -p /etc/netns/novpn
-: > /etc/netns/novpn/resolv.conf
+cp /etc/resolv.conf /etc/netns/novpn/resolv.conf
 
 ip netns del novpn
 ip netns add novpn

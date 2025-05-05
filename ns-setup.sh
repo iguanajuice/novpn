@@ -15,7 +15,7 @@ ip netns add novpn
 ip link del novpn
 ip link add novpn type veth peer name veth
 ip link set veth netns novpn
-while ! ip link show dev mvlan
+while ! ip --netns novpn link show dev mvlan
 do ip link add mvlan link $PHY_IFNAME netns novpn type macvlan
 done
 
@@ -27,4 +27,4 @@ ip --netns novpn link set lo up
 ip --netns novpn link set veth up
 ip --netns novpn link set mvlan up
 
-ip netns e novpn dhcpcd -4 --leasetime 1800 mvlan
+ip netns exec novpn dhcpcd -4 --leasetime 1800 mvlan

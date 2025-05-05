@@ -3,9 +3,10 @@
 PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 
 mkdir -p /etc/netns/novpn/resolv.conf.d
-echo 'nameserver 127.0.0.53
-nameserver 9.9.9.9 149.112.112.112
-nameserver 2620:fe::fe 2620:fe::9' > /etc/netns/novpn/resolv.conf
+echo 'nameserver 9.9.9.9
+nameserver 149.112.112.112
+nameserver 2620:fe::fe
+nameserver 2620:fe::9' > /etc/netns/novpn/resolv.conf
 cp /etc/netns/novpn/resolv.conf /etc/netns/novpn/resolv.conf.d/@base
 
 ip netns del novpn

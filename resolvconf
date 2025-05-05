@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/sh -e
+
+cd /etc/netns/novpn
 
 flag_a=0
 flag_d=0
@@ -8,20 +10,27 @@ do
     case $flag in
         a)
             flag_a=1
+            opt_a=$OPTARG
             ;;
         d)
             flag_d=1
+            opt_d=$OPTARG
             ;;
     esac
 done
 
+make_resolv_conf() {
+    cat resolv.conf.d/* > /etc/resolv.conf
+}
+
 if [ $flag_a -eq 1 ]
 then
-    cp /etc/resolv.conf /etc/netns/novpn/resolv.conf.bak
-    cat >> /etc/resolv.conf
+    cat > resolv.conf.d/$opt_a
+    make_resolv_conf
 elif [ $flag_d -eq 1 ]
 then
-    mv /etc/netns/novpn/resolv.conf.bak /etc/resolv.conf
+    rm resolv.conf.d/$opt_d
+    make_resolv_conf
 else
     exit 1
 fi

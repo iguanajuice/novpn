@@ -3,6 +3,7 @@
 PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 
 mkdir -p /etc/netns/novpn/resolv.conf.d
+rm /etc/netns/novpn/resolv.conf.d/* 2>/dev/null
 echo 'nameserver 9.9.9.9
 nameserver 149.112.112.112
 nameserver 2620:fe::fe

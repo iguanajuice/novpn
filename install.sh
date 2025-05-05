@@ -19,5 +19,5 @@ then
 else
 	echo "
 	Not using systemd. A service file for your init system needs to
-	be created for running /usr/libexec/novpn-ns-setup.sh on boot."
+	be created for running ns-setup.sh on boot."
 fi

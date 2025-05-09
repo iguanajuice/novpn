@@ -14,16 +14,16 @@ ip netns del novpn
 ip netns add novpn
 
 ip link del novpn
-ip link add novpn type veth peer name veth
-ip link set veth netns novpn
+ip link add novpn type veth peer name host
+ip link set host netns novpn
 ip link add mvlan link $PHY_IFNAME netns novpn type macvlan
 
 ip addr add 10.0.1.1/24 dev novpn
-ip --netns novpn addr add 10.0.1.2/24 dev veth
+ip --netns novpn addr add 10.0.1.2/24 dev host
 
 ip link set novpn up
 ip --netns novpn link set lo up
-ip --netns novpn link set veth up
+ip --netns novpn link set host up
 ip --netns novpn link set mvlan up
 
 ip netns exec novpn dhcpcd -4 --leasetime 1800 mvlan

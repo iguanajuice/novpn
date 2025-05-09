@@ -28,9 +28,11 @@ int main(int argc, char* argv[])
 	close(fd) == 0 || die;
 
 	unshare(CLONE_NEWNS) == 0 || die;
-	mount("none", "/", "none", MS_PRIVATE, NULL) == 0 || die;
+	mount("none", "/", "none", MS_PRIVATE|MS_REC, NULL) == 0 || die;
 	mount("/etc/netns/novpn/resolv.conf", "/etc/resolv.conf", "none", MS_BIND, NULL);
+	mount("/etc/resolv.conf", "/run/user/1000/.flatpak-helper/monitor/resolv.conf", "none", MS_BIND, NULL); // FIXME: Don't use magic number '1000' for UID. Consider $XDG_RUNTIME_DIR
 	mount("/usr/libexec/novpn/resolvconf", "/bin/resolvconf", "none", MS_BIND, NULL);
+	mount("/etc/netns/novpn/.blank", "/run/systemd/resolve", "none", MS_BIND, NULL);
 
 	if (argc > 1) {
 		execvp(argv[1], argv + 1);

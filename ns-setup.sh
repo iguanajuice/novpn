@@ -4,15 +4,11 @@ while ! PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
 do sleep 0.1; done
 
 mkdir -p /etc/netns/novpn/resolv.conf.d
+mkdir -p /etc/netns/novpn/.blank
 rm /etc/netns/novpn/resolv.conf.d/* 2>/dev/null
-[ -f /run/systemd/resolve/resolv.conf ] &&
-RESOLV=/run/systemd/resolve || RESOLV=/etc
-echo "$(grep -E '^\w' $RESOLV/resolv.conf)
-nameserver 9.9.9.9
-nameserver 149.112.112.112
-nameserver 2620:fe::fe
-nameserver 2620:fe::9" > /etc/netns/novpn/resolv.conf
-cp /etc/netns/novpn/resolv.conf /etc/netns/novpn/resolv.conf.d/@base
+echo "nameserver 9.9.9.9
+nameserver 2620:fe::fe" > /etc/netns/novpn/resolv.conf
+cp /etc/netns/novpn/resolv.conf /etc/netns/novpn/resolv.conf.d/tail
 
 ip netns del novpn
 ip netns add novpn

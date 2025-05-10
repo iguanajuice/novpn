@@ -1,8 +1,5 @@
 #!/bin/sh
 
-while ! PHY_IFNAME=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`
-do sleep 0.1; done
-
 mkdir -p /etc/netns/novpn/resolv.conf.d
 mkdir -p /run/novpn/systemd/resolve
 rm /etc/netns/novpn/resolv.conf.d/* 2>/dev/null
@@ -26,6 +23,6 @@ ip link set novpn up
 ip --netns novpn link set lo up
 ip --netns novpn link set host up
 
-`dirname $0`/mvlan-create.sh $PHY_IFNAME
+`dirname $0`/mvlan-create.sh
 
 ip netns exec novpn dhcpcd -4 -b --leasetime 1800 mvlan

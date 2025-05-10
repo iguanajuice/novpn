@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 	mount("none", "/", "none", MS_PRIVATE|MS_REC, NULL) == 0 || die;
 	mount("/etc/netns/novpn/resolv.conf", "/etc/resolv.conf", "none", MS_BIND, NULL) == 0 || die;
 	mount("/etc/resolv.conf", flatpak_monitor_resolvconf, "none", MS_BIND, NULL);
-	mount("/usr/libexec/novpn/resolvconf", "/bin/resolvconf", "none", MS_BIND, NULL) == 0 || die;
-	mount("/etc/netns/novpn/.blank", "/run/systemd/resolve", "none", MS_BIND, NULL);
+	mount("/usr/libexec/novpn/resolvconf", "/bin/resolvconf", "none", MS_BIND, NULL);
+	mount("/run/novpn/systemd/resolve", "/run/systemd/resolve", "none", MS_BIND, NULL);
 
 	free(flatpak_monitor_resolvconf);
 

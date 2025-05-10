@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
 	mount("/etc/resolv.conf", flatpak_monitor_resolvconf, "none", MS_BIND, NULL);
 	mount("/usr/libexec/novpn/resolvconf", "/bin/resolvconf", "none", MS_BIND, NULL);
 	mount("/run/novpn/systemd/resolve", "/run/systemd/resolve", "none", MS_BIND, NULL);
+	mount("/run/novpn/dhcpcd", "/run/dhcpcd", "none", MS_BIND, NULL);
 
 	free(flatpak_monitor_resolvconf);
 

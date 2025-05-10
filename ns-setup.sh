@@ -2,6 +2,7 @@
 
 mkdir -p /etc/netns/novpn/resolv.conf.d
 mkdir -p /run/novpn/systemd/resolve
+mkdir -p /run/novpn/dhcpcd
 rm /etc/netns/novpn/resolv.conf.d/* 2>/dev/null
 echo "nameserver 9.9.9.9
 nameserver 2620:fe::fe" > /etc/netns/novpn/resolv.conf
@@ -25,4 +26,4 @@ ip --netns novpn link set host up
 
 `dirname $0`/mvlan-create.sh
 
-ip netns exec novpn dhcpcd -4 -b --leasetime 1800 mvlan
+novpn dhcpcd -4 -b --leasetime 1800 mvlan

@@ -1,0 +1,10 @@
+[Unit]
+Description=Ensures Novpn's MACVLAN exists after system resume
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/novpn/mvlan-create.sh
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

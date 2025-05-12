@@ -12,7 +12,7 @@ install -Dm755 resolvconf /usr/libexec/novpn
 cc novpn-setuid.c -o /usr/bin/novpn
 setcap CAP_SYS_ADMIN=ep /usr/bin/novpn'
 
-if [ `ps -p1 -ocomm=` = "systemd" ]
+if [ `ps -p1 -ocomm=` = "systemd" ] && [ $1 != "no-systemd" ]
 then
 	sh -xec '
 	install -Dm644 systemd/*.service /usr/lib/systemd/system

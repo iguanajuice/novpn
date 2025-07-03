@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h> //FIXME: REMOVE
 
 int die_f(int line_number) { 
 	exit(line_number);
@@ -20,6 +21,21 @@ int die_f(int line_number) {
 }
 
 #define die (die_f(__LINE__))
+
+void run_flatpak_helper(void)
+{
+	char* exe = "/usr/libexec/flatpak-session-helper";
+	pid_t pid = fork();
+
+	switch (pid) {
+	case -1:
+		die;
+	case 0:
+		execl(exe, exe, NULL);
+	default:
+		return;
+	}
+}
 
 char* strconcat(const char *s1, const char *s2)
 {
@@ -33,6 +49,10 @@ char* strconcat(const char *s1, const char *s2)
 
 int main(int argc, char* argv[])
 {
+	int uid = getuid();
+
+	//if (uid != 0) run_flatpak_helper();
+
 	int fd = open(PATH_TO_NAMESPACE, O_RDONLY);
 	fd == -1 && die;
 	setns(fd, CLONE_NEWNET) == 0 || die;
@@ -55,7 +75,7 @@ int main(int argc, char* argv[])
 	if (argc > 1) {
 		execvp(argv[1], argv + 1);
 	} else {
-		execl(getpwuid(getuid())->pw_shell, "", NULL);
+		execl(getpwuid(uid)->pw_shell, "", NULL);
 	}
 
 	return die;

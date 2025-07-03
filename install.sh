@@ -6,13 +6,15 @@ fi
 
 sh -xec '
 mkdir -p /usr/libexec/novpn
+mkdir -p /etc/netns/novpn/resolv.conf.d
+touch /etc/netns/novpn/resolv.conf
 install -Dm755 ns-setup.sh /usr/libexec/novpn
 install -Dm755 mvlan-create.sh /usr/libexec/novpn
 install -Dm755 resolvconf /usr/libexec/novpn
 cc novpn-setuid.c -o /usr/bin/novpn
 setcap CAP_SYS_ADMIN=ep /usr/bin/novpn'
 
-if [ `ps -p1 -ocomm=` = "systemd" ] && [ $1 != "no-systemd" ]
+if [ `ps -p1 -ocomm=` = "systemd" ] && [ "$1" != "no-systemd" ]
 then
 	sh -xec '
 	install -Dm644 systemd/*.service /usr/lib/systemd/system

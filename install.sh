@@ -6,6 +6,7 @@ fi
 
 sh -xec '
 mkdir -p /usr/libexec/novpn
+mkdir -p /etc/resolv.conf.d
 mkdir -p /etc/netns/novpn/resolv.conf.d
 touch /etc/netns/novpn/resolv.conf
 install -Dm755 ns-setup.sh /usr/libexec/novpn

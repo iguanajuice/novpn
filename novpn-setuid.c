@@ -13,7 +13,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h> //FIXME: REMOVE
 
 int die_f(int line_number) { 
 	exit(line_number);

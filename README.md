@@ -17,6 +17,15 @@ Clone the repo and run `./install.sh` for an automated setup.
 
 ## Usage
 
+### Heads up for Flatpak apps
+
+Flatpak apps need `flatpak-session-helper` for handling the access of host /etc files by app containers.
+
+If you use `novpn` on a Flatpak app before `flatpak-sesion-helper` is running,
+the application will use the wrong resolv.conf file, resulting in DNS issues.
+
+To fix this, add `/usr/libexec/flatpak-session-helper` to your autostart.
+
 ### Running an application or command
 
 `novpn [command [args]]`

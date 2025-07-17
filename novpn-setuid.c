@@ -21,21 +21,6 @@ int die_f(int line_number) {
 
 #define die (die_f(__LINE__))
 
-void run_flatpak_helper(void)
-{
-	char* exe = "/usr/libexec/flatpak-session-helper";
-	pid_t pid = fork();
-
-	switch (pid) {
-	case -1:
-		die;
-	case 0:
-		execl(exe, exe, NULL);
-	default:
-		return;
-	}
-}
-
 char* strconcat(const char *s1, const char *s2)
 {
 	char *result = malloc(strlen(s1) + strlen(s2) + 1);
@@ -49,8 +34,6 @@ char* strconcat(const char *s1, const char *s2)
 int main(int argc, char* argv[])
 {
 	int uid = getuid();
-
-	//if (uid != 0) run_flatpak_helper();
 
 	int fd = open(PATH_TO_NAMESPACE, O_RDONLY);
 	fd == -1 && die;

@@ -12,7 +12,9 @@ Easy split tunneling setup using network namespaces!
 
 ## Installation
 
-Clone the repo and run `./install.sh` for an automated setup.
+1. Clone the repo
+2. Run `sudo make install`
+3. If using systemd, also run `sudo make systemd`
 
 
 ## Usage

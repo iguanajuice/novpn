@@ -52,8 +52,6 @@ int main(int argc, char* argv[])
 	mount("/run/novpn/systemd/resolve", "/run/systemd/resolve", "none", MS_BIND, NULL);
 	mount("/run/novpn/dhcpcd", "/run/dhcpcd", "none", MS_BIND, NULL);
 
-	free(flatpak_monitor_resolvconf);
-
 	if (argc > 1) {
 		execvp(argv[1], argv + 1);
 	} else {

@@ -11,8 +11,6 @@ uninstall:
 
 install: uninstall novpn
 	mkdir -p $(PREFIX)/libexec/novpn/
-	mkdir -p /etc/resolv.conf.d/
-	mkdir -p /etc/netns/novpn/resolv.conf.d/
 	install -Dm755 ns-setup.sh $(PREFIX)/libexec/novpn/
 	install -Dm755 if-create.sh $(PREFIX)/libexec/novpn/
 	install -Dm755 resolvconf $(PREFIX)/libexec/novpn/

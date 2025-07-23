@@ -7,28 +7,24 @@ flag_d=0
 
 while getopts "a:d:f" flag
 do
-    case $flag in
-        a)
-            flag_a=1
-            ;;
-        d)
-            flag_d=1
-            ;;
-    esac
+  case $flag in
+    a)
+      flag_a=1
+      ;;
+    d)
+      flag_d=1
+      ;;
+  esac
 done
-
-make_resolv_conf() {
-    cat resolv.conf.d/* > /etc/resolv.conf
-}
 
 if [ $flag_a -eq 1 ]
 then
-    cat > resolv.conf.d/head
-    make_resolv_conf
+    [ -f resolv.conf.bak ] || cp resolv.conf resolv.conf.bak
+    cat > resolv.conf
 elif [ $flag_d -eq 1 ]
 then
-    rm resolv.conf.d/head
-    make_resolv_conf
+    cat resolv.conf.bak > resolv.conf
+    rm resolv.conf.bak
 else
     exit 1
 fi

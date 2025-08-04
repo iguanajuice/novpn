@@ -17,10 +17,13 @@ install: uninstall novpn
 	install -Dm755 novpn $(PREFIX)/bin/
 	setcap CAP_SYS_ADMIN=ep $(PREFIX)/bin/novpn
 
-.PHONY: systemd
-systemd:
+systemd_install:
 	install -Dm644 systemd/*.service /usr/lib/systemd/system/
+
+.PHONY: systemd
+systemd: systemd_install
 	systemctl enable novpn-keepalive
 	systemctl enable novpn-namespace
-	systemctl restart novpn-keepalive
+	systemctl enable novpn-dhcpcd
 	systemctl restart novpn-namespace
+	systemctl restart novpn-dhcpcd

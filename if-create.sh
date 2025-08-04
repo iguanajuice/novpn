@@ -10,11 +10,11 @@ ip link set $IF_XNS netns novpn
 
 ip addr add $XNS_PFX4.1/24 dev novpn
 ip addr add $XNS_PFX6::1/64 dev novpn
+ip link set novpn up
+
+ip --netns novpn link set lo up || exit 2
 ip --netns novpn addr add $XNS_PFX4.2/24 dev $IF_XNS
 ip --netns novpn addr add $XNS_PFX6::2/64 dev $IF_XNS
-
-ip link set novpn up
-ip --netns novpn link set lo up
 ip --netns novpn link set $IF_XNS up
 
 while ! IF_PHY=`ip route | grep '^default' | grep -oP '(?<=dev )[^\s]+'`

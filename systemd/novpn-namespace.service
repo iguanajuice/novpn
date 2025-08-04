@@ -4,10 +4,10 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-Type=forking
+Type=oneshot
 ExecStart=/usr/libexec/novpn/ns-setup.sh
 ExecStop=/bin/ip netns del novpn
-KillMode=process
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target

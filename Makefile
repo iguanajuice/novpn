@@ -17,7 +17,12 @@ install: uninstall novpn
 	install -Dm755 novpn $(PREFIX)/bin/
 	setcap CAP_SYS_ADMIN=ep $(PREFIX)/bin/novpn
 
-systemd_install:
+systemd_uninstall:
+	rm /usr/lib/systemd/system/novpn-namespace.service
+	rm /usr/lib/systemd/system/novpn-keepalive.service
+	rm /usr/lib/systemd/system/novpn-dhcpcd.service
+
+systemd_install: systemd_uninstall
 	install -Dm644 systemd/*.service /usr/lib/systemd/system/
 
 .PHONY: systemd

@@ -5,7 +5,7 @@ After=novpn-novpn.service
 
 [Service]
 Type=simple
-ExecStart=novpn /sbin/dhcpcd -4 -C resolv.conf --leasetime 1800 -B
+ExecStart=novpn /sbin/dhcpcd -4 -C resolv.conf --leasetime 1800 eth0 -B
 
 [Install]
 WantedBy=multi-user.target

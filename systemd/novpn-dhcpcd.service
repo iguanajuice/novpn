@@ -1,7 +1,7 @@
 [Unit]
 Description=DHCP client daemon for Novpn
 Requires=novpn-namespace.service
-After=novpn-novpn.service
+After=novpn-namespace.service
 
 [Service]
 Type=simple

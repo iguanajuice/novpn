@@ -10,3 +10,4 @@ mkdir -p /etc/netns/novpn/
 echo "nameserver 9.9.9.9" > /etc/netns/novpn/resolv.conf
 mkdir -p /run/novpn/dhcpcd/
 mkdir -p /run/novpn/systemd/resolve/
+echo "nameserver 9.9.9.9" > /run/novpn/systemd/resolve/stub-resolv.conf

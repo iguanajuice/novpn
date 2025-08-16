@@ -6,7 +6,7 @@ clean:
 	rm -f novpn
 
 uninstall:
-	rm $(PREFIX)/libexec/novpn/ -rf
+	rm -f $(PREFIX)/libexec/novpn/ -r
 	rm -f $(PREFIX)/bin/novpn
 
 install: uninstall novpn
@@ -18,9 +18,9 @@ install: uninstall novpn
 	setcap CAP_SYS_ADMIN=ep $(PREFIX)/bin/novpn
 
 systemd_uninstall:
-	rm /usr/lib/systemd/system/novpn-namespace.service
-	rm /usr/lib/systemd/system/novpn-keepalive.service
-	rm /usr/lib/systemd/system/novpn-dhcpcd.service
+	rm -f /usr/lib/systemd/system/novpn-namespace.service
+	rm -f /usr/lib/systemd/system/novpn-keepalive.service
+	rm -f /usr/lib/systemd/system/novpn-dhcpcd.service
 
 systemd_install: systemd_uninstall
 	install -Dm644 systemd/*.service /usr/lib/systemd/system/

@@ -11,8 +11,7 @@ uninstall:
 
 install: uninstall novpn
 	mkdir -p $(PREFIX)/libexec/novpn/
-	install -Dm755 ns-setup.sh $(PREFIX)/libexec/novpn/
-	install -Dm755 resolvconf $(PREFIX)/libexec/novpn/
+	install -Dm755 scripts/* $(PREFIX)/libexec/novpn/
 	install -Dm755 novpn $(PREFIX)/bin/
 	setcap CAP_SYS_ADMIN=ep $(PREFIX)/bin/novpn
 

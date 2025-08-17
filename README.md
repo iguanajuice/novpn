@@ -7,7 +7,7 @@ Easy split tunneling setup using network namespaces!
 
 * `iproute2`
 * `jq`
-* `dhcpcd`
+* `passt`
 * a C compiler
 
 
@@ -15,8 +15,10 @@ Easy split tunneling setup using network namespaces!
 
 1. Clone the repo
 2. Run `sudo make install`
-3. If using systemd, also run `sudo make systemd`
-
+3. If not using systemd, ignore proceeding steps and figure it out yourself
+4. Run `sudo make systemd`
+5. Cooka the pasta with: `sudo systemctl enable --now novpn-pasta@enp1s0`
+(replace `enp1s0` with the actual name of your main network interface)
 
 ## Usage
 

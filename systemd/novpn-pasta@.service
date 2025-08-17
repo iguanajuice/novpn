@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup pasta interface for novpn
+Wants=novpn-namespace.service
+After=novpn-namespace.service
+
+[Service]
+Type=simple
+ExecStart=pasta -f --runas 0 -I tap_%i --config-net --outbound-if4 %i --outbound-if6 %i --netns novpn
+
+[Install]
+WantedBy=multi-user.target

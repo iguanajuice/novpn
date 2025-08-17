@@ -3,7 +3,7 @@
 ip netns del novpn
 ip netns add novpn
 
-$(dirname "$0")/if-create.sh
+ip --netns novpn link set lo up
 
 rm /etc/netns/novpn/ -rf 2>/dev/null
 mkdir -p /etc/netns/novpn/

@@ -6,7 +6,6 @@ Easy split tunneling setup using network namespaces!
 ## Dependencies
 
 * `iproute2`
-* `jq`
 * `passt`
 * a C compiler
 

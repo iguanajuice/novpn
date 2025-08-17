@@ -16,8 +16,10 @@ install: uninstall novpn
 	setcap CAP_SYS_ADMIN=ep $(PREFIX)/bin/novpn
 
 systemd_uninstall:
+	systemctl disable --now novpn-namespace.service 2>/dev/null || :
 	rm -f /usr/lib/systemd/system/novpn-namespace.service
 	rm -f /usr/lib/systemd/system/novpn-pasta@.service
+	rm -f /etc/systemd/system/novpn-pasta@*.service
 
 systemd_install: systemd_uninstall
 	install -Dm644 systemd/*.service /usr/lib/systemd/system/

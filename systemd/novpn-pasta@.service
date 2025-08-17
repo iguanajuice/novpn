@@ -5,7 +5,7 @@ After=novpn-namespace.service
 
 [Service]
 Type=simple
-ExecStart=pasta -f --runas 0 -I tap_%i --config-net --outbound-if4 %i --outbound-if6 %i --netns novpn
+ExecStart=pasta -f --runas 0 --netns novpn -I tap_%i --config-net --outbound-if4 %i --outbound-if6 %i
 RestartOn=failure
 RestartSec=5
 StartLimitBurst=10

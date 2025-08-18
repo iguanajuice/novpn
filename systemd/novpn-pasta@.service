@@ -6,9 +6,9 @@ After=novpn-namespace.service
 [Service]
 Type=simple
 ExecStart=pasta -f --runas 0 --netns novpn -I tap_%i --config-net --outbound-if4 %i --outbound-if6 %i
-RestartOn=failure
+Restart=on-failure
 RestartSec=5
-StartLimitBurst=10
+StartLimitBurst=5
 StartLimitIntervalSec=30
 
 [Install]

@@ -2,6 +2,10 @@
 
 Easy split tunneling setup using network namespaces!
 
+*Please use [flypaper](https://codeberg.org/iguanajuice/flypaper) instead.*
+
+*This repo may still be helpful if you need an easy way to setup a secondary internet-enabled network namespace, though.*
+
 
 ## Dependencies
 
